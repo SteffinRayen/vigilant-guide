@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="7befcf4d-79aa-4ae8-82eb-6fe52a648bea" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="02_CreateAccount" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" maxResults="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="7befcf4d-79aa-4ae8-82eb-6fe52a648beafileName">02_CreateAccount</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="groovy" name="Initialize" id="2b2410f3-a569-4558-b78b-3907bd464581"><con:settings/><con:config><script>propTestStep = context.testCase.getTestStepByName("PropertyLoop") 
+propTestStep.setPropertyValue("StopLoop","F" )
+propTestStep.setPropertyValue("Count","1")
+propTestStep.setPropertyValue("Next","2")</script></con:config></con:testStep><con:testStep type="properties" name="PropertyLoop" id="d17ccd83-9635-4dcb-9f4b-4517ba88ea19"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>AccountCSVPath</con:name><con:value>F:\soap-ui\Account.csv</con:value></con:property><con:property><con:name>accountTotal</con:name><con:value>10</con:value></con:property><con:property><con:name>Count</con:name><con:value>11</con:value></con:property><con:property><con:name>Next</con:name><con:value>12</con:value></con:property><con:property><con:name>StopLoop</con:name><con:value>T</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="properties" name="Account" id="b7d39ab6-d3cf-4d32-9752-6d76ed47ebf7"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>account_id</con:name><con:value>0</con:value></con:property><con:property><con:name>account_type</con:name><con:value>C</con:value></con:property><con:property><con:name>balance</con:name><con:value>2000</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="CSVDataSource" id="1e7282ae-abd5-4bbf-b655-aa26f8e99bab"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+def myTestCase = context.testCase 
+def counter,next,previous,row_count 
+
+accountProperty = myTestCase.getTestStepByName("Account")
+propTestStep = myTestCase.getTestStepByName("PropertyLoop") 
+
+context.fileReader = new BufferedReader(new FileReader(propTestStep.getPropertyValue("AccountCSVPath").toString()))
+rowsData = context.fileReader.readLines()
+
+row_count = propTestStep.getPropertyValue("accountTotal").toInteger()
+
+counter = propTestStep.getPropertyValue("Count").toInteger()
+
+next = (counter > row_count ? 0: counter+1) 
+
+rowdata = rowsData[counter]
+String[] data = rowdata.split(",")
+
+accountProperty.setPropertyValue("account_id", data[0]) 
+accountProperty.setPropertyValue("account_type", data[1]) 
+accountProperty.setPropertyValue("balance", data[2]) 
+
+propTestStep.setPropertyValue("Count", next.toString()) 
+next++ 
+propTestStep.setPropertyValue("Next", next.toString()) 
+
+if (counter == row_count) {
+	propTestStep.setPropertyValue("StopLoop", "T")
+}
+else if (counter==0) {
+	propTestStep.setPropertyValue("StopLoop", "F")
+	def runner = new com.eviware.soapui.impl.wsdl.testcase.WsdlTestCaseRunner(testRunner.testCase, null)
+}
+else {
+	propTestStep.setPropertyValue("StopLoop", "F")
+}</script></con:config></con:testStep><con:testStep type="request" id="0213565b-5b1f-4330-9ef7-0e551632d707" name="CreateAccount"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>createAccount</con:operation><con:request name="CreateAccount" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="c34894bb-b03e-4541-953b-94a56c96df63"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com" xmlns:mod="http://model.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:createAccount>
+         <ser:accountData>
+            <mod:account_id>${Account#account_id}</mod:account_id>
+            <mod:account_type>${Account#account_type}</mod:account_type>
+            <mod:balance>${Account#balance}</mod:balance>
+         </ser:accountData>
+      </ser:createAccount>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="054af011-cfbc-45da-a94a-0ed8f35b3419" name="SOAP Response"/><con:assertion type="XPath Match" id="7f54120d-cdd5-4eeb-b8f9-d3e2430fa54f" name="Match content of [account_type] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:createAccountResponse[1]/ns1:createAccountReturn[1]/ns1:account_type[1]/text(), '[SC]* (Account)' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="85e30e4e-b692-4979-9aed-5bf1a890c2c7" name="Check for existence of [account_id]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:createAccountResponse/ns1:createAccountReturn/ns1:account_id)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="34bdc29f-9bd7-4076-b1ca-ec589f525d92" name="Check for existence of [account_type]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:createAccountResponse/ns1:createAccountReturn/ns1:account_type)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="20b51ae7-f659-4d47-97d2-207d7e19305d" name="Check for existence of [balance]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:createAccountResponse/ns1:createAccountReturn/ns1:balance)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="dcd6da23-fc74-410b-aabf-05f3d0d93079" name="Match content of [account_type] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:createAccountResponse[1]/ns1:createAccountReturn[1]/ns1:account_type[1]/text(), '[SC]* (Account)' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="30bd3516-91bd-44d5-97c7-b2f8bb49f6ea" name="Match content of [balance]"><con:configuration><path>declare namespace ns1='http://service.com';
+//ns1:createAccountResponse[1]/ns1:createAccountReturn[1]/ns1:balance[1]/text()</path><content>${Account#balance}.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Simple NotContains" id="06fef999-49e7-4ed2-bd28-15aaf8683003" name="Not Contains Error"><con:configuration><token>Error</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/createAccountRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="PropertyTransfer 1" id="e30528bd-2c2d-4efd-8bcb-6f2fbeb510e5"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false" disabled="true"><con:name>account_id</con:name><con:sourceType>account_id</con:sourceType><con:sourceStep>Account</con:sourceStep><con:sourcePath>declare namespace ns1='http://service.com';
+//ns1:createAccountResponse[1]/ns1:createAccountReturn[1]/ns1:account_id[1]</con:sourcePath><con:targetType>account_id</con:targetType><con:targetStep>Account</con:targetStep><con:targetPath/><con:type>XPATH</con:type><con:targetTransferType>JSONPATH</con:targetTransferType><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="f5577fdb-2cbf-4b4f-952e-feb95ae147de" name="getAllAccountData"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>getAllAccountData</con:operation><con:request name="getAllAccountData" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="f79092a3-6cfa-4163-afbb-a4a00de04787"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllAccountData/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="b1cc181d-a520-41e1-96d8-16548cc64ea5" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="2cf462ed-d579-4555-b9da-678bd952ef9d" name="Not SOAP Fault"/><con:assertion type="XPath Match" id="35e4369a-a4b4-423d-a1e9-621ada470c6f" name="Match content of [account_type] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:getAllAccountDataResponse[1]/ns1:getAllAccountDataReturn[1]/ns1:accountDataArray[1]/ns1:accountDataArray[1]/ns1:account_type[1]/text(), '[SC]* (Account)' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Simple Contains" id="a4c6cf42-4938-4c1e-8cfa-da3d578dc285" name="AccountID"><con:configuration><token>${Account#account_id}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple NotContains" id="944279a4-044d-4469-84ab-b540fcf7b737" name="Not Contains Error"><con:configuration><token>Error</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="XPath Match" id="b3fbe248-aad5-45c5-9033-f5082c17226b" name="Check for existence of [accountDataArray]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:getAllAccountDataResponse/ns1:getAllAccountDataReturn/ns1:accountDataArray/ns1:accountDataArray)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAllAccountDataRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="AccountLooper" id="783c1599-3c54-4bd7-93ed-efbdfe3a5689"><con:settings/><con:config><script>def myTestCase = context.testCase
+def runner
+
+propTestStep = myTestCase.getTestStepByName("PropertyLoop") 
+endLoop = propTestStep.getPropertyValue("StopLoop").toString()
+if (endLoop.toString() == "T" || endLoop.toString()=="True" || endLoop.toString()=="true") {
+	log.info ("Exit Groovy Data Source Looper")
+	assert true
+}
+else {
+	testRunner.gotoStepByName("CSVDataSource") //setStartStep
+}</script></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>7028a9fe-bdae-43e9-827e-a5fe8ad0d573</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>c9dfa189-2d73-49d8-817f-47c6152e66d7</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>e7e315ae-02b4-4487-b3be-56d93d1ae793</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
