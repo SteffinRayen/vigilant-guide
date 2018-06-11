@@ -1,3 +1,4 @@
 01_CreateCustomer.xml
 02_CreateAccount.xml
 03_CreateCustomerAccountMapping.xml
+04_DoDeposit.xml
