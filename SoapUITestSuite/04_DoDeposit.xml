@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="1500c0a7-210b-456a-bcb4-1ab02c564d68" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="04_DoDeposit" searchProperties="true" timeout="0" maxResults="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="1500c0a7-210b-456a-bcb4-1ab02c564d68fileName">04_DoDeposit</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="properties" name="Properties" id="72465843-e55c-4600-ab1e-47cae73f7718"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>toAccountID</con:name><con:value>2010</con:value></con:property><con:property><con:name>amount</con:name><con:value>500</con:value></con:property><con:property><con:name>loopIndex</con:name><con:value>10</con:value></con:property><con:property><con:name>loopEnd</con:name><con:value>10</con:value></con:property><con:property><con:name>transactionID</con:name><con:value>3143</con:value></con:property><con:property><con:name>DepositXMLPath</con:name><con:value>F:\soap-ui\deposit.xml</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Initialize" id="7d5c6db4-3746-4d40-a0ae-e51f4d5bf126"><con:settings/><con:config><script>propTestStep = context.testCase.getTestStepByName("Properties")
+propTestStep.setPropertyValue("loopIndex","1")
+</script></con:config></con:testStep><con:testStep type="groovy" name="XMLDataSource" id="724335c8-6800-48a4-b436-a939a63b21b9"><con:settings/><con:config><script>import java.util.Random
+Random random = new Random()
+def myTestCase = context.testCase 
+propTestStep = myTestCase.getTestStepByName("Properties") 
+
+File file = new File (propTestStep.getPropertyValue("DepositXMLPath").toString())
+def xmlFile = file.getText();
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder(xmlFile)
+
+def counter = Integer.parseInt(propTestStep.getPropertyValue("loopIndex"))
+log.info(counter)
+def toAccount =  holder.getNodeValue("//root/deposit["+counter+"]/acount_id/text()") 
+def amount = holder.getNodeValue("//root/deposit["+counter+"]/amount/text()") 
+log.info (toAccount)
+log.info(amount)
+propTestStep.setPropertyValue("toAccountID", toAccount)
+propTestStep.setPropertyValue("amount", amount)</script></con:config></con:testStep><con:testStep type="request" id="8de01086-8c55-49bf-be03-fe8f5f15f8f0" name="Deposit"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>doDeposit</con:operation><con:request name="Deposit" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="5d04e766-e0c4-436b-9335-fd419ee2ba34"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:doDeposit>
+         <ser:account_id>${Properties#toAccountID}</ser:account_id>
+         <ser:amount>${Properties#amount}</ser:amount>
+      </ser:doDeposit>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e803afdd-c85d-4525-a5a1-37f02031048a" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="883e3459-325c-4a40-885e-79165660c798" name="Not SOAP Fault"/><con:assertion type="XPath Match" id="99e11e36-37b7-404a-83fc-a509511802ff" name="Match content of [transaction_id] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:doDepositResponse[1]/ns1:doDepositReturn[1]/ns1:transaction_id[1]/text(), '3[0-9]{3}' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="52444f3a-1bcb-48af-a070-fcf250d7f881" name="Check for existence of [doDepositReturn]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:doDepositResponse/ns1:doDepositReturn)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="3eea6b31-11a8-4261-ab3f-57183c5f6e57" name="Match content of [description]"><con:configuration><path>declare namespace ns1='http://service.com';
+//ns1:doDepositResponse[1]/ns1:doDepositReturn[1]/ns1:description[1]/text()</path><content>Deposit ${Properties#amount}.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/doDepositRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="PropertyTransfer 1" id="b960333a-c376-4fd6-ab10-a8d9d8052740"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>transaction_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>Deposit</con:sourceStep><con:sourcePath>declare namespace ns1='http://service.com';
+//ns1:doDepositResponse[1]/ns1:doDepositReturn[1]/ns1:transaction_id[1]</con:sourcePath><con:targetType>transactionID</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:type>XPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="919ecb70-af4d-425e-a9db-eb8c4b01fc38" name="getAllTransactionData"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>getAllTransactionData</con:operation><con:request name="getAllTransactionData" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="2bf3f440-b38b-48d8-bd00-df3ab51f4c0b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllTransactionData/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="5917e08d-8184-4db7-9981-4e1d3923e440" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="b476cc62-a370-4308-af87-746fdf0ef387" name="Not SOAP Fault"/><con:assertion type="Simple Contains" id="c34d8a03-2e90-4ec2-96b6-1d0c21f205c0" name="TransactionID"><con:configuration><token>${Properties#transactionID}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="67546c9e-b06e-4aac-8f53-87e98153a317" name="AccountID"><con:configuration><token>${Properties#toAccountID}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAllTransactionDataRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="Looper" id="89489782-830d-44b3-9fdc-e7f4f0c0f0f3"><con:settings/><con:config><script>def myTestCase = context.testCase 
+propTestStep = myTestCase.getTestStepByName("Properties") 
+
+def localloopIndex = propTestStep.getPropertyValue("loopIndex") as Integer
+def localloopEnd = propTestStep.getPropertyValue("loopEnd") as Integer
+if(  localloopIndex   &lt; localloopEnd ){
+	propTestStep.setPropertyValue("loopIndex", (localloopIndex  + 1) as String)	
+	testRunner.gotoStepByName( "XMLDataSource" )
+}
+
+
+
+</script></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>6ad48131-d964-4a5b-9b02-ad1e0f1e06bf</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>4eda2343-c63c-4434-aa9c-6afbbdcb7a49</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
