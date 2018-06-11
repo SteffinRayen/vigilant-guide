@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:operation id="309f47b0-afad-475f-8a07-b15518635108" isOneWay="false" action="" name="doDeposit" bindingOperationName="doDeposit" type="Request-Response" outputName="doDepositResponse" inputName="doDepositRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="309f47b0-afad-475f-8a07-b15518635108fileName">doDeposit</con:setting></con:settings><con:call id="bd871f12-f859-4b0d-9eb7-38d0efc5667a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+<con:operation id="309f47b0-afad-475f-8a07-b15518635108" isOneWay="false" action="" name="doDeposit" bindingOperationName="doDeposit" type="Request-Response" outputName="doDepositResponse" inputName="doDepositRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="309f47b0-afad-475f-8a07-b15518635108fileName">doDeposit</con:setting></con:settings><con:call id="bd871f12-f859-4b0d-9eb7-38d0efc5667a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <ser:doDeposit>\r
@@ -7,4 +7,4 @@
          <ser:amount>?</ser:amount>\r
       </ser:doDeposit>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/doDepositRequest"/></con:call></con:operation>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/doDepositRequest"/></con:call></con:operation>
