@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="730a95a9-98af-48fb-a84d-7ad680191520" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="01_CreateCustomer" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword="" maxResults="0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="730a95a9-98af-48fb-a84d-7ad680191520fileName">01_CreateCustomer</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="properties" name="Properties" id="c9f6cbf8-872b-4e2d-a80b-7d905aaab21f"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>customer_id</con:name><con:value>1070</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="datasource" name="DataSource" id="b20a6f3d-da1c-467c-84a3-323d7aa2e17f"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Excel"><con:configuration><file>F:/soap-ui/Customer.xls</file><worksheet/><cell>A2</cell><ignoreEmpty>true</ignoreEmpty><evaluateFormulas>false</evaluateFormulas></con:configuration></con:dataSource><con:shared>true</con:shared><con:restartShared>true</con:restartShared><con:property>customer_id</con:property><con:property>first_name</con:property><con:property>middle_name</con:property><con:property>last_name</con:property><con:property>street</con:property><con:property>city</con:property><con:property>state</con:property><con:property>zip</con:property><con:property>phone</con:property><con:property>email</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="request" id="88c21b4e-3406-4192-b31d-1d0e2bb57ae8" name="createCustomer"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>createCustomer</con:operation><con:request name="createCustomer" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="0ba9cf70-367b-4425-bdb0-1c993603e225"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com" xmlns:mod="http://model.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:createCustomer>
+         <ser:customerData>
+            <mod:city>${DataSource#city}</mod:city>
+            <mod:customer_id>${DataSource#customer_id}</mod:customer_id>
+            <mod:email>${DataSource#email}</mod:email>
+            <mod:first_name>${DataSource#first_name}</mod:first_name>
+            <mod:last_name>${DataSource#last_name}</mod:last_name>
+            <mod:middle_name>${DataSource#middle_name}</mod:middle_name>
+            <mod:phone>${DataSource#phone}</mod:phone>
+            <mod:state>${DataSource#state}</mod:state>
+            <mod:street>${DataSource#street}</mod:street>
+            <mod:zip>${DataSource#zip}</mod:zip>
+         </ser:customerData>
+      </ser:createCustomer>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1763aa5b-c546-4b5d-9ca5-92a9372d5315" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="46234318-6b6a-4bd0-b130-55c5237c7e28" name="Not SOAP Fault"/><con:assertion type="MessageContentAssertion" id="dcd31ea7-73e7-48df-a0ae-fc9247cb028d" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:city[1]</con:xpath><con:element>city</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#city}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:customer_id[1]</con:xpath><con:element>customer_id</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>false</con:enabled><con:expectedValue>${DataSource#customer_id}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:email[1]</con:xpath><con:element>email</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#email}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:first_name[1]</con:xpath><con:element>first_name</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#first_name}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:last_name[1]</con:xpath><con:element>last_name</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#last_name}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:middle_name[1]</con:xpath><con:element>middle_name</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#middle_name}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:phone[1]</con:xpath><con:element>phone</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#phone}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:state[1]</con:xpath><con:element>state</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#state}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:street[1]</con:xpath><con:element>street</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#street}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:elements><con:xpath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:zip[1]</con:xpath><con:element>zip</con:element><con:type xsi:nil="true"/><con:operator>=</con:operator><con:enabled>true</con:enabled><con:expectedValue>${DataSource#zip}</con:expectedValue><con:hasValue>false</con:hasValue><con:numberType>false</con:numberType></con:elements><con:originalMessage><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Body>
+      <createCustomerResponse xmlns="http://service.com">
+         <createCustomerReturn>
+            <city>Sevilla</city>
+            <customer_id>1061</customer_id>
+            <email>satheesh@gmail.com</email>
+            <first_name>Satheesh</first_name>
+            <last_name>Netherstalker</last_name>
+            <middle_name>E.</middle_name>
+            <phone>43844108</phone>
+            <state>Spain</state>
+            <street>Ivory Passage</street>
+            <zip>41101</zip>
+         </createCustomerReturn>
+      </createCustomerResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:originalMessage></con:configuration></con:assertion><con:assertion type="XPath Match" id="356268aa-28e6-490c-96d2-bc19e799d7d7" name="Check for existence of [customer_id]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:createCustomerResponse/ns1:createCustomerReturn/ns1:customer_id)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="9b5d0517-c7ce-44a6-8597-d3ca4a978821" name="Match content of [customer_id] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:customer_id[1]/text(), '1[0-9]{3}' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/createCustomerRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="PropertyTransfer 1" id="90983bf9-d33d-4d62-8614-a5c01ecce5eb"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" transferToAll="false" ignoreEmpty="false" entitize="false" transferChildNodes="false"><con:name>customer_id</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>createCustomer</con:sourceStep><con:sourcePath>declare namespace ns1='http://service.com';
+//ns1:createCustomerResponse[1]/ns1:createCustomerReturn[1]/ns1:customer_id[1]</con:sourcePath><con:targetType>customer_id</con:targetType><con:targetStep>Properties</con:targetStep><con:targetPath/><con:type>XPATH</con:type><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="bd90042a-ab07-4613-a09f-ce792ecba8f6" name="getAllCustomerData"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>BankServiceSoapBinding</con:interface><con:operation>getAllCustomerData</con:operation><con:request name="getAllCustomerData" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="2b80077d-9cf9-420b-8663-259ea9037a30"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllCustomerData/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="18f33737-8629-4a3c-88b3-128707e039b8" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" id="ecd27efd-1874-40bd-8789-4b3ca7c2e6a5" name="Not SOAP Fault"/><con:assertion type="MessageContentAssertion" id="438d9dd3-5f5f-4c33-953a-0d0b59b835a6" name="Message Content Assertion"><con:configuration xsi:type="con:MessageContentAssertion"><con:originalMessage><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Body>
+      <getAllCustomerDataResponse xmlns="http://service.com">
+         <getAllCustomerDataReturn>
+            <customerDataArray>
+               <customerDataArray>
+                  <city>Berlin</city>
+                  <customer_id>1001</customer_id>
+                  <email>sharanan@gmail.com</email>
+                  <first_name>Sharanan</first_name>
+                  <last_name>Goldsword</last_name>
+                  <middle_name>O.</middle_name>
+                  <phone>(171) 555-2222</phone>
+                  <state>Germany</state>
+                  <street>Marble Street</street>
+                  <zip>12209</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>México D.F.</city>
+                  <customer_id>1002</customer_id>
+                  <email>vakshajan@gmail.com</email>
+                  <first_name>Vakshajan</first_name>
+                  <last_name>Dewroar</last_name>
+                  <middle_name>R.</middle_name>
+                  <phone>(100) 555-4822</phone>
+                  <state>Mexico</state>
+                  <street>Centre Boulevard</street>
+                  <zip>5021</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>México D.F.</city>
+                  <customer_id>1003</customer_id>
+                  <email>armihan@gmail.com</email>
+                  <first_name>Armihan</first_name>
+                  <last_name>Bearblight</last_name>
+                  <middle_name>E.</middle_name>
+                  <phone>(313) 555-5735</phone>
+                  <state>Mexico</state>
+                  <street>Commercial Street</street>
+                  <zip>5023</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>London</city>
+                  <customer_id>1004</customer_id>
+                  <email>shasedharan@gmail.com</email>
+                  <first_name>Shasedharan</first_name>
+                  <last_name>Farblight</last_name>
+                  <middle_name>N.</middle_name>
+                  <phone>(03) 3555-5011</phone>
+                  <state>UK</state>
+                  <street>Hind Way</street>
+                  <zip>WA1 1DP</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Luleå</city>
+                  <customer_id>1005</customer_id>
+                  <email>harsuthan@gmail.com</email>
+                  <first_name>Harsuthan</first_name>
+                  <last_name>Noseore</last_name>
+                  <middle_name>D.</middle_name>
+                  <phone>(98) 598 76 54</phone>
+                  <state>Sweden</state>
+                  <street>Vista Row</street>
+                  <zip>S-958 22</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Mannheim</city>
+                  <customer_id>1006</customer_id>
+                  <email>mithushanth@gmail.com</email>
+                  <first_name>Mithushanth</first_name>
+                  <last_name>Fuserider</last_name>
+                  <middle_name>D.</middle_name>
+                  <phone>(06) 431-7877</phone>
+                  <state>Germany</state>
+                  <street>Wellness Row</street>
+                  <zip>68306</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Strasbourg</city>
+                  <customer_id>1007</customer_id>
+                  <email>adalarasen@gmail.com</email>
+                  <first_name>Adalarasen</first_name>
+                  <last_name>Strongkeeper</last_name>
+                  <middle_name>P.</middle_name>
+                  <phone>(03) 444-2343</phone>
+                  <state>France</state>
+                  <street>Blossom Avenue</street>
+                  <zip>67000</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Madrid</city>
+                  <customer_id>1008</customer_id>
+                  <email>nivedhanraj@gmail.com</email>
+                  <first_name>Nivedhanraj</first_name>
+                  <last_name>Blackbinder</last_name>
+                  <middle_name>D.</middle_name>
+                  <phone>(161) 555-4448</phone>
+                  <state>Spain</state>
+                  <street>Underwood Street</street>
+                  <zip>28023</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Marseille</city>
+                  <customer_id>1009</customer_id>
+                  <email>vaamanan@gmail.com</email>
+                  <first_name>Vaamanan</first_name>
+                  <last_name>Hallowedtree</last_name>
+                  <middle_name>H.</middle_name>
+                  <phone>031-987 65 43</phone>
+                  <state>France</state>
+                  <street>Merchant Avenue</street>
+                  <zip>13008</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Tsawassen</city>
+                  <customer_id>1010</customer_id>
+                  <email>nimarshan@gmail.com</email>
+                  <first_name>Nimarshan</first_name>
+                  <last_name>Cliffheart</last_name>
+                  <middle_name>Y.</middle_name>
+                  <phone>(11) 555 4640</phone>
+                  <state>Canada</state>
+                  <street>University Way</street>
+                  <zip>T2F 8M4</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>London</city>
+                  <customer_id>1011</customer_id>
+                  <email>gowsiga@gmail.com</email>
+                  <first_name>Gowsiga</first_name>
+                  <last_name>Tarrenblossom</last_name>
+                  <middle_name>I.</middle_name>
+                  <phone>(010) 9984510</phone>
+                  <state>UK</state>
+                  <street>Poplar Way</street>
+                  <zip>EC2 5NT</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Buenos Aires</city>
+                  <customer_id>1012</customer_id>
+                  <email>saimeera@gmail.com</email>
+                  <first_name>Saimeera</first_name>
+                  <last_name>Covenfeather</last_name>
+                  <middle_name>F.</middle_name>
+                  <phone>(069) 992755</phone>
+                  <state>Argentina</state>
+                  <street>Amber Boulevard</street>
+                  <zip>1010</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>México D.F.</city>
+                  <customer_id>1013</customer_id>
+                  <email>nithaara@gmail.com</email>
+                  <first_name>Nithaara</first_name>
+                  <last_name>Featherthorne</last_name>
+                  <middle_name>W.</middle_name>
+                  <phone>(04721) 8713</phone>
+                  <state>Mexico</state>
+                  <street>Congress Street</street>
+                  <zip>5022</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Bern</city>
+                  <customer_id>1014</customer_id>
+                  <email>hemavarsini@gmail.com</email>
+                  <first_name>Hemavarsini</first_name>
+                  <last_name>Cinderdrifter</last_name>
+                  <middle_name>L.</middle_name>
+                  <phone>(0544) 60323</phone>
+                  <state>Switzerland</state>
+                  <street>Chapel Row</street>
+                  <zip>3012</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>São Paulo</city>
+                  <customer_id>1015</customer_id>
+                  <email>barathika@gmail.com</email>
+                  <first_name>Barathika</first_name>
+                  <last_name>Bladeroot</last_name>
+                  <middle_name>W.</middle_name>
+                  <phone>(0)2-953010</phone>
+                  <state>Brazil</state>
+                  <street>Palm Street</street>
+                  <zip>05432-043</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>London</city>
+                  <customer_id>1016</customer_id>
+                  <email>niyashana@gmail.com</email>
+                  <first_name>Niyashana</first_name>
+                  <last_name>Slatehelm</last_name>
+                  <middle_name>A.</middle_name>
+                  <phone>(503) 555-9931</phone>
+                  <state>UK</state>
+                  <street>Clearance Street</street>
+                  <zip>WX1 6LT</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Aachen</city>
+                  <customer_id>1017</customer_id>
+                  <email>sasmitha@gmail.com</email>
+                  <first_name>Sasmitha</first_name>
+                  <last_name>Rapidbasher</last_name>
+                  <middle_name>L.</middle_name>
+                  <phone>08-123 45 67</phone>
+                  <state>Germany</state>
+                  <street>Duchess Street</street>
+                  <zip>52066</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Nantes</city>
+                  <customer_id>1018</customer_id>
+                  <email>sahira@gmail.com</email>
+                  <first_name>Sahira</first_name>
+                  <last_name>Starblaze</last_name>
+                  <middle_name>W.</middle_name>
+                  <phone>(1) 03.83.00.68</phone>
+                  <state>France</state>
+                  <street>Fortune Boulevard</street>
+                  <zip>44000</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>London</city>
+                  <customer_id>1019</customer_id>
+                  <email>kasinda@gmail.com</email>
+                  <first_name>Kasinda</first_name>
+                  <last_name>Mildbane</last_name>
+                  <middle_name>E.</middle_name>
+                  <phone>(617) 555-3267</phone>
+                  <state>UK</state>
+                  <street>Providence Avenue</street>
+                  <zip>WX3 6FW</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Graz</city>
+                  <customer_id>1020</customer_id>
+                  <email>naveetha@gmail.com</email>
+                  <first_name>Naveetha</first_name>
+                  <last_name>Mirthcutter</last_name>
+                  <middle_name>G.</middle_name>
+                  <phone>555-8787</phone>
+                  <state>Austria</state>
+                  <street>Temple Lane</street>
+                  <zip>8010</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>São Paulo</city>
+                  <customer_id>1021</customer_id>
+                  <email>mithush@gmail.com</email>
+                  <first_name>Mithush</first_name>
+                  <last_name>Cloudvalor</last_name>
+                  <middle_name>S.</middle_name>
+                  <phone>43844108</phone>
+                  <state>Brazil</state>
+                  <street>Crimson Passage</street>
+                  <zip>05442-030</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Madrid</city>
+                  <customer_id>1022</customer_id>
+                  <email>maayavan@gmail.com</email>
+                  <first_name>Maayavan</first_name>
+                  <last_name>Meadowwhisper</last_name>
+                  <middle_name>H.</middle_name>
+                  <phone>(12345) 1212</phone>
+                  <state>Spain</state>
+                  <street>Quarry Boulevard</street>
+                  <zip>28034</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Lille</city>
+                  <customer_id>1023</customer_id>
+                  <email>thushaaran@gmail.com</email>
+                  <first_name>Thushaaran</first_name>
+                  <last_name>Sternstone</last_name>
+                  <middle_name>P.</middle_name>
+                  <phone>(953) 10956</phone>
+                  <state>France</state>
+                  <street>Granite Avenue</street>
+                  <zip>59000</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Bräcke</city>
+                  <customer_id>1024</customer_id>
+                  <email>saayithan@gmail.com</email>
+                  <first_name>Saayithan</first_name>
+                  <last_name>Hydraspark</last_name>
+                  <middle_name>Z.</middle_name>
+                  <phone>(02) 555-5914</phone>
+                  <state>Sweden</state>
+                  <street>Innovation Row</street>
+                  <zip>S-844 67</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>München</city>
+                  <customer_id>1025</customer_id>
+                  <email>sangeethan@gmail.com</email>
+                  <first_name>Sangeethan</first_name>
+                  <last_name>Burningchewer</last_name>
+                  <middle_name>Z.</middle_name>
+                  <phone>(514) 555-9022</phone>
+                  <state>Germany</state>
+                  <street>Wharf Avenue</street>
+                  <zip>80805</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Nantes</city>
+                  <customer_id>1026</customer_id>
+                  <email>pulikesi@gmail.com</email>
+                  <first_name>Pulikesi</first_name>
+                  <last_name>Ironshard</last_name>
+                  <middle_name>B.</middle_name>
+                  <phone>(089) 6547665</phone>
+                  <state>France</state>
+                  <street>Wetland Row</street>
+                  <zip>44000</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Torino</city>
+                  <customer_id>1027</customer_id>
+                  <email>keertheevan@gmail.com</email>
+                  <first_name>Keertheevan</first_name>
+                  <last_name>Treetrack</last_name>
+                  <middle_name>A.</middle_name>
+                  <phone>85.57.00.07</phone>
+                  <state>Italy</state>
+                  <street>Clove Avenue</street>
+                  <zip>10100</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Lisboa</city>
+                  <customer_id>1028</customer_id>
+                  <email>mayurakan@gmail.com</email>
+                  <first_name>Mayurakan</first_name>
+                  <last_name>Hallowwing</last_name>
+                  <middle_name>V.</middle_name>
+                  <phone>38.76.98.06</phone>
+                  <state>Portugal</state>
+                  <street>Hope Street</street>
+                  <zip>1675</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Barcelona</city>
+                  <customer_id>1029</customer_id>
+                  <email>suganen@gmail.com</email>
+                  <first_name>Suganen</first_name>
+                  <last_name>Freewind</last_name>
+                  <middle_name>P.</middle_name>
+                  <phone>(514) 555-2955</phone>
+                  <state>Spain</state>
+                  <street>Vista Street</street>
+                  <zip>8022</zip>
+               </customerDataArray>
+               <customerDataArray>
+                  <city>Sevilla</city>
+                  <customer_id>1030</customer_id>
+                  <email>satheesh@gmail.com</email>
+                  <first_name>Satheesh</first_name>
+                  <last_name>Netherstalker</last_name>
+                  <middle_name>E.</middle_name>
+                  <phone>43844108</phone>
+                  <state>Spain</state>
+                  <street>Ivory Passage</street>
+                  <zip>41101</zip>
+               </customerDataArray>
+            </customerDataArray>
+         </getAllCustomerDataReturn>
+      </getAllCustomerDataResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:originalMessage></con:configuration></con:assertion><con:assertion type="XPath Match" id="621d76b4-4d7e-4bb3-90ce-1ffda4bfd144" name="Check for existence of [customer_id]"><con:configuration><path>declare namespace ns1='http://service.com';
+exists( //ns1:getAllCustomerDataResponse/ns1:getAllCustomerDataReturn/ns1:customerDataArray/ns1:customerDataArray/ns1:customer_id)</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="81be99ac-14ab-4af0-823e-d5419d8bd69c" name="Match content of [customer_id] using RegEx"><con:configuration><path>declare namespace ns1='http://service.com';
+matches( //ns1:getAllCustomerDataResponse[1]/ns1:getAllCustomerDataReturn[1]/ns1:customerDataArray[1]/ns1:customerDataArray[1]/ns1:customer_id[1]/text(), '1[0-9]{3}' )</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Simple Contains" id="8f1ded4e-e437-4277-9d36-256d5ba8e20a" name="Contains"><con:configuration><token>${Properties#customer_id}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAllCustomerDataRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="0f49a2d0-f09b-4e13-b903-a0763c429aa7"><con:settings/><con:config><dataSourceStep>DataSource</dataSourceStep><targetStep>createCustomer</targetStep><discardResults>true</discardResults></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>6c61e841-7abd-4658-8429-9572b93942f5</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>5cf62f00-1be9-4a54-8a01-15bb193e9ff8</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
