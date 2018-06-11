@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="816fbfb3-47e7-454f-8f32-53b59ec08e20" isOneWay="false" action="" name="getAllTransactionData" bindingOperationName="getAllTransactionData" type="Request-Response" outputName="getAllTransactionDataResponse" inputName="getAllTransactionDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="816fbfb3-47e7-454f-8f32-53b59ec08e20fileName">getAllTransactionData</con:setting></con:settings><con:call id="200da881-b921-49ce-99e3-9223cdc00208" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getAllTransactionData/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAllTransactionDataRequest"/></con:call></con:operation>

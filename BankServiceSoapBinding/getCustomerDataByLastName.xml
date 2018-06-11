@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="c4c5f813-8364-4f46-be66-bc7be187f603" isOneWay="false" action="" name="getCustomerDataByLastName" bindingOperationName="getCustomerDataByLastName" type="Request-Response" outputName="getCustomerDataByLastNameResponse" inputName="getCustomerDataByLastNameRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="c4c5f813-8364-4f46-be66-bc7be187f603fileName">getCustomerDataByLastName</con:setting></con:settings><con:call id="de89da5d-e493-4f86-8ef3-734654f39004" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getCustomerDataByLastName>\r
+         <ser:last_name>?</ser:last_name>\r
+      </ser:getCustomerDataByLastName>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getCustomerDataByLastNameRequest"/></con:call></con:operation>

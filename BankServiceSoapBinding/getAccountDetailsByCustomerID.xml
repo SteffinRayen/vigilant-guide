@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="accde5d3-823c-4df6-955c-6af4b7c44d75" isOneWay="false" action="" name="getAccountDetailsByCustomerID" bindingOperationName="getAccountDetailsByCustomerID" type="Request-Response" outputName="getAccountDetailsByCustomerIDResponse" inputName="getAccountDetailsByCustomerIDRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="accde5d3-823c-4df6-955c-6af4b7c44d75fileName">getAccountDetailsByCustomerID</con:setting></con:settings><con:call id="c90aaca4-4a3e-44d5-b2f3-61c87f4c5ec9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getAccountDetailsByCustomerID>\r
+         <ser:customer_id>?</ser:customer_id>\r
+      </ser:getAccountDetailsByCustomerID>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAccountDetailsByCustomerIDRequest"/></con:call></con:operation>

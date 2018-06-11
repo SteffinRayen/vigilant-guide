@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="a27d3eda-b890-4288-a333-2f918d44012a" isOneWay="false" action="" name="getAllCustomerData" bindingOperationName="getAllCustomerData" type="Request-Response" outputName="getAllCustomerDataResponse" inputName="getAllCustomerDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a27d3eda-b890-4288-a333-2f918d44012afileName">getAllCustomerData</con:setting></con:settings><con:call id="12b00018-94e9-41f7-84ac-ab043036d4a2" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getAllCustomerData/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getAllCustomerDataRequest"/></con:call></con:operation>

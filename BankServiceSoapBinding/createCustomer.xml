@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="a6c1c898-9a21-4173-a21f-344a99748a0d" isOneWay="false" action="" name="createCustomer" bindingOperationName="createCustomer" type="Request-Response" outputName="createCustomerResponse" inputName="createCustomerRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a6c1c898-9a21-4173-a21f-344a99748a0dfileName">createCustomer</con:setting></con:settings><con:call id="78da8e72-314a-45cf-beeb-ff8ccb72c640" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com" xmlns:mod="http://model.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:createCustomer>\r
+         <ser:customerData>\r
+            <mod:city>?</mod:city>\r
+            <mod:customer_id>?</mod:customer_id>\r
+            <mod:email>?</mod:email>\r
+            <mod:first_name>?</mod:first_name>\r
+            <mod:last_name>?</mod:last_name>\r
+            <mod:middle_name>?</mod:middle_name>\r
+            <mod:phone>?</mod:phone>\r
+            <mod:state>?</mod:state>\r
+            <mod:street>?</mod:street>\r
+            <mod:zip>?</mod:zip>\r
+         </ser:customerData>\r
+      </ser:createCustomer>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/createCustomerRequest"/></con:call></con:operation>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="99da6db1-c725-4998-ad8a-7a6b83e29d70" isOneWay="false" action="" name="getTransactionDataByTimeStamp" bindingOperationName="getTransactionDataByTimeStamp" type="Request-Response" outputName="getTransactionDataByTimeStampResponse" inputName="getTransactionDataByTimeStampRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="99da6db1-c725-4998-ad8a-7a6b83e29d70fileName">getTransactionDataByTimeStamp</con:setting></con:settings><con:call id="60745e36-0ad2-4035-8ad5-43d3acd6470e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getTransactionDataByTimeStamp>\r
+         <ser:time_stamp>?</ser:time_stamp>\r
+      </ser:getTransactionDataByTimeStamp>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getTransactionDataByTimeStampRequest"/></con:call></con:operation>

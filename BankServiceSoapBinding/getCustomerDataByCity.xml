@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="ccace970-30bd-4216-b699-e59fa2bcc03c" isOneWay="false" action="" name="getCustomerDataByCity" bindingOperationName="getCustomerDataByCity" type="Request-Response" outputName="getCustomerDataByCityResponse" inputName="getCustomerDataByCityRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ccace970-30bd-4216-b699-e59fa2bcc03cfileName">getCustomerDataByCity</con:setting></con:settings><con:call id="34ea1e48-4195-4ef1-9673-b16b99a04db8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getCustomerDataByCity>\r
+         <ser:city>?</ser:city>\r
+      </ser:getCustomerDataByCity>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getCustomerDataByCityRequest"/></con:call></con:operation>

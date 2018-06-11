@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="8d3c29f5-44e6-4803-9aa5-9b667ca59267" isOneWay="false" action="" name="getCustomerDataByStreet" bindingOperationName="getCustomerDataByStreet" type="Request-Response" outputName="getCustomerDataByStreetResponse" inputName="getCustomerDataByStreetRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="8d3c29f5-44e6-4803-9aa5-9b667ca59267fileName">getCustomerDataByStreet</con:setting></con:settings><con:call id="b95cdccc-5350-4f01-bf8c-f3677ddbea7b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getCustomerDataByStreet>\r
+         <ser:street>?</ser:street>\r
+      </ser:getCustomerDataByStreet>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getCustomerDataByStreetRequest"/></con:call></con:operation>

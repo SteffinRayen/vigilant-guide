@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="6678be01-0917-48d4-857b-f075ea24da88" isOneWay="false" action="" name="getCustomerDataByEmail" bindingOperationName="getCustomerDataByEmail" type="Request-Response" outputName="getCustomerDataByEmailResponse" inputName="getCustomerDataByEmailRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="6678be01-0917-48d4-857b-f075ea24da88fileName">getCustomerDataByEmail</con:setting></con:settings><con:call id="f23cfa57-958d-4880-bc34-ae6feb933c43" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getCustomerDataByEmail>\r
+         <ser:email>?</ser:email>\r
+      </ser:getCustomerDataByEmail>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getCustomerDataByEmailRequest"/></con:call></con:operation>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="a3fd4f1e-dfb5-4531-a149-ced40c7d6dcd" isOneWay="false" action="" name="getCustomerDataByState" bindingOperationName="getCustomerDataByState" type="Request-Response" outputName="getCustomerDataByStateResponse" inputName="getCustomerDataByStateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a3fd4f1e-dfb5-4531-a149-ced40c7d6dcdfileName">getCustomerDataByState</con:setting></con:settings><con:call id="18615fa0-508d-4d15-8949-888e8c13c4b9" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getCustomerDataByState>\r
+         <ser:state>?</ser:state>\r
+      </ser:getCustomerDataByState>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/getCustomerDataByStateRequest"/></con:call></con:operation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:operation id="6bd02ce4-3470-4933-b3f0-304ab6f5af5c" isOneWay="false" action="" name="doFundsTransfer" bindingOperationName="doFundsTransfer" type="Request-Response" outputName="doFundsTransferResponse" inputName="doFundsTransferRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="6bd02ce4-3470-4933-b3f0-304ab6f5af5cfileName">doFundsTransfer</con:setting></con:settings><con:call id="93216c10-0fea-4840-8546-09d2fa458976" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/redesigned-invention/services/BankService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.com">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:doFundsTransfer>\r
+         <ser:fromAccountID>?</ser:fromAccountID>\r
+         <ser:toAccountID>?</ser:toAccountID>\r
+         <ser:amount>?</ser:amount>\r
+      </ser:doFundsTransfer>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.com/BankService/doFundsTransferRequest"/></con:call></con:operation>
