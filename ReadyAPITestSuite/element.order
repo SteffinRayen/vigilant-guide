@@ -3,3 +3,4 @@
 03_CreateCustomerAccountMapping.xml
 04_DoDeposit.xml
 05_DoWithdrawal.xml
+06_DoFundsTransfer.xml
